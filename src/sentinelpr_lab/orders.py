@@ -63,7 +63,7 @@ def calculate_total(items: list[OrderItem], discount: Discount | None = None) ->
 
     if discount is not None:
         validate_discount(discount)
-        if subtotal >= discount.min_subtotal:
+        if subtotal > discount.min_subtotal:
             subtotal -= subtotal * discount.percent / Decimal("100")
 
     return subtotal.quantize(CENT, rounding=ROUND_HALF_UP)

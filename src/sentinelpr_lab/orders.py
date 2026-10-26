@@ -67,3 +67,8 @@ def calculate_total(items: list[OrderItem], discount: Discount | None = None) ->
             subtotal -= subtotal * discount.percent / Decimal("100")
 
     return subtotal.quantize(CENT, rounding=ROUND_HALF_UP)
+
+
+def format_total(total: Decimal, currency: str = "USD") -> str:
+    """Render a total for display, e.g. ``"USD 25.50"``."""
+    return f"{currency} {total.quantize(CENT, rounding=ROUND_HALF_UP)}"

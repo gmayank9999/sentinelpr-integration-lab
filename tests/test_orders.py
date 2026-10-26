@@ -64,3 +64,10 @@ def test_float_price_rejected():
 def test_empty_order_rejected():
     with pytest.raises(ValueError):
         calculate_total([])
+
+
+def test_format_total():
+    from sentinelpr_lab import format_total
+
+    assert format_total(D("25.5")) == "USD 25.50"
+    assert format_total(D("0"), currency="EUR") == "EUR 0.00"

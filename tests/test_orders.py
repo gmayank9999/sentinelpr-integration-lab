@@ -64,3 +64,9 @@ def test_float_price_rejected():
 def test_empty_order_rejected():
     with pytest.raises(ValueError):
         calculate_total([])
+
+
+def test_discount_applies_when_subtotal_equals_threshold():
+    # A subtotal exactly at min_subtotal qualifies (documented as >=).
+    discount = Discount(D("20"), min_subtotal=D("100"))
+    assert calculate_total([OrderItem(D("50"), 2)], discount) == D("80.00")
